@@ -1,13 +1,13 @@
 // Import the path module to work with file paths
-import { resolve } from "path";
+import path from "path";
 // Export an object with configuration options for Sequelize CLI
 export default {
     // Configuration file path for Sequelize
-    config: path.resolve("src/db/config", "sequelize.config.js"),
+    'config': path.resolve("src/db/config", "config.json"),
     // Path to the directory where models are stored
-    "models-path": resolve("src/db", "models"),
+    "models-path": path.resolve("src/db", "models"),
     // seeders
-    "seeders-path": resolve("src/db", "seeders"),
+    "seeders-path": path.resolve("src/db", "seeders"),
     // Set the path to the directory to store migrations
-    "migrations-path": resolve("src/db", "migrations"),
+    "migrations-path": path.resolve("src/db", "migrations"),
 };

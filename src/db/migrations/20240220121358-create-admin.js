@@ -19,7 +19,7 @@ module.exports = {
             },
             LastName: {
                 type: Sequelize.STRING,
-                allowNull: false,
+                allowNull: true,
             },
             Email: {
                 type: Sequelize.STRING,
@@ -27,31 +27,31 @@ module.exports = {
             },
             Mobile: {
                 type: Sequelize.STRING,
-                allowNull: false,
+                allowNull: true,
             },
             Address1: {
                 type: Sequelize.STRING,
-                allowNull: false,
+                allowNull: true,
             },
             Address2: {
                 type: Sequelize.STRING,
-                allowNull: false,
+                allowNull: true,
             },
             City: {
                 type: Sequelize.STRING,
-                allowNull: false,
+                allowNull: true,
             },
             RegionId: {
                 type: Sequelize.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             Zip: {
                 type: Sequelize.STRING,
-                allowNull: false,
+                allowNull: true,
             },
             AltPhone: {
                 type: Sequelize.STRING,
-                allowNull: false,
+                allowNull: true,
             },
             CreatedBy: {
                 type: Sequelize.STRING,
@@ -63,23 +63,23 @@ module.exports = {
             },
             ModifiedBy: {
                 type: Sequelize.STRING,
-                allowNull: false,
+                allowNull: true,
             },
             updatedAt: {
-                allowNull: false,
+                allowNull: true,
                 type: Sequelize.DATE,
             },
             Status: {
                 type: Sequelize.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
             IsDeleted: {
                 type: Sequelize.BOOLEAN,
-                allowNull: false,
+                allowNull: true,
             },
             RoleId: {
                 type: Sequelize.INTEGER,
-                allowNull: false,
+                allowNull: true,
             },
         });
     },

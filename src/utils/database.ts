@@ -1,8 +1,23 @@
-import { Sequelize } from "sequelize-typescript";
-
-const sequelize = new Sequelize("halloDoc-ts", "root", "", {
-    host: "localhost",
-    dialect: "mysql",
-});
-
-export default sequelize;
+export const dbConfig = {
+    development: {
+        username: "root",
+        password: "",
+        database: "hallodoc-ts",
+        host: "localhost",
+        dialect: "mysql",
+    },
+    test: {
+        username: "root",
+        password: "",
+        database: "hallodoc-ts",
+        host: "localhost",
+        dialect: "mysql",
+    },
+    production: {
+        username: "root",
+        password: "",
+        database: "hallodoc-ts",
+        host: "localhost",
+        dialect: "mysql",
+    },
+};

@@ -1,10 +1,10 @@
 import { Optional }  from 'sequelize';
 
-interface AccUserAttributes {
+interface TestAttributes {
     id: number;
     UserName: string
     Password?: string
-    Email?: string
+    Email: string
     PhoneNumber?: string
     createdAt: Date
     updatedAt?: Date
@@ -12,6 +12,6 @@ interface AccUserAttributes {
     expireToken?: Date | null
 }
 
-type AccUserCreationAttributes = Optional<AccUserAttributes, 'id'>;
+type TestCreationAttributes = Optional<TestAttributes, 'id'>;
 
-export { AccUserAttributes, AccUserCreationAttributes };
+export { TestAttributes, TestCreationAttributes };

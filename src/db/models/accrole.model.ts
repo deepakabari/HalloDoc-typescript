@@ -1,6 +1,7 @@
-import { Table, Column, Model } from 'sequelize-typescript';
-import { DataTypes } from 'sequelize';
-import { AccRoleAttributes, AccRoleCreationAttributes } from '../../interfaces';
+import { Table, Column, Model, BelongsToMany } from "sequelize-typescript";
+import { DataTypes } from "sequelize";
+import { AccRoleAttributes, AccRoleCreationAttributes } from "../../interfaces";
+import AccUser from './accuser.model';
 
 @Table({
     timestamps: true,
@@ -16,8 +17,11 @@ class AccRole extends Model<AccRoleAttributes, AccRoleCreationAttributes> {
     })
     id: number;
 
-    @Column({ type: DataTypes.STRING, allowNull: false})
+    @Column({ type: DataTypes.STRING, allowNull: false })
     Name: string;
+
+    // @BelongsToMany(() => AccUser, { through: 'AccUserRole'})
+    // users: AccUser[];
 }
 
 export default AccRole;

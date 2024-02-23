@@ -1,14 +1,21 @@
-import jwt from 'jsonwebtoken';
-import httpCode from '../constants/http.constant';
-import messageConstant from '../constants/message.constant';
+import jwt from "jsonwebtoken";
+import httpCode from "../constants/http.constant";
+import messageConstant from "../constants/message.constant";
+import { Request as ExpressRequest, Response, NextFunction } from "express";
+import dotenv from 'dotenv'
+dotenv.config();
 
-const SECRET: string | undefined = process.env.SECRET;
+const SECRET = process.env.SECRET as string;
 
-export default (req: any, res: any, next: any): void => {
+interface Request extends ExpressRequest {
+    userId: string;
+}
+
+export default (req: Request, res: Response, next: NextFunction): void => {
     const authHeader: string | undefined = req.get("Authorization");
 
     if (!authHeader) {
-        const error: any = messageConstant.NOT_AUTHORIZED;
+        const error: any = new Error(messageConstant.NOT_AUTHORIZED);
         error.statusCode = httpCode.UNAUTHORIZED;
         throw error;
     }
@@ -18,11 +25,11 @@ export default (req: any, res: any, next: any): void => {
 
     try {
         decodedToken = jwt.verify(token, SECRET);
-    } catch (err) {
-        err.statusCode = httpCode.INTERNAL_SERVER_ERROR;
-        throw err;
+    } catch (error: any) {
+        error.statusCode = httpCode.INTERNAL_SERVER_ERROR;
+        throw error;
     }
-    
+
     if (!decodedToken) {
         const error: any = messageConstant.NOT_AUTHORIZED;
         error.statusCode = httpCode.UNAUTHORIZED;

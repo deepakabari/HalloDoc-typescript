@@ -2,34 +2,30 @@ import {
     Table,
     Column,
     Model,
-    BelongsTo,
     ForeignKey,
-    BelongsToMany,
-    HasMany,
+    BelongsTo,
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
-import { AdminAttributes, AdminCreationAttributes } from "../../interfaces";
-import AccUser from "./accuser.model";
 import Region from "./region.model";
-import Role from "./role.model";
+import AccUser from "./accuser.model";
 
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "admin",
+    tableName: "user",
 })
-class Admin extends Model<AdminAttributes, AdminCreationAttributes> {
+class User extends Model {
     @Column({
+        type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
-        type: DataTypes.INTEGER,
     })
-    id: number;
+    UserId: number;
 
     @ForeignKey(() => AccUser)
-    @Column({ type: DataTypes.INTEGER, allowNull: false })
-    AccUserId: number;
+    @Column({ type: DataTypes.STRING, allowNull: true })
+    AccUserId: string;
 
     @Column({ type: DataTypes.STRING, allowNull: false })
     FirstName: string;
@@ -43,50 +39,63 @@ class Admin extends Model<AdminAttributes, AdminCreationAttributes> {
     @Column({ type: DataTypes.STRING, allowNull: true })
     Mobile: string;
 
-    @Column({ type: DataTypes.STRING, allowNull: false })
-    Address1: string;
+    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
+    IsMobile: boolean;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
-    Address2: string;
+    Street: string;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
     City: string;
 
+    @Column({ type: DataTypes.STRING, allowNull: true })
+    State: string;
+
+    @ForeignKey(() => Region)
     @Column({ type: DataTypes.INTEGER, allowNull: true })
     RegionId: number;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
-    Zip: string;
+    ZipCode: string;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
-    AltPhone: string;
+    strMonth: string;
 
+    @Column({ type: DataTypes.INTEGER, allowNull: true })
+    intYear: number;
+
+    @Column({ type: DataTypes.INTEGER, allowNull: true })
+    intDate: number;
+
+    @Column({ type: DataTypes.INTEGER, allowNull: true })
+    Status: number;
+    
+    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
+    IsDeleted: boolean;
+    
+    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
+    IsRequestWithEmail: boolean;
+    
     @ForeignKey(() => AccUser)
     @Column({ type: DataTypes.STRING, allowNull: false })
     CreatedBy: string;
+
+    @Column({ type: DataTypes.DATE, allowNull: false })
+    CreatedDate: Date;
 
     @ForeignKey(() => AccUser)
     @Column({ type: DataTypes.STRING, allowNull: true })
     ModifiedBy: string;
 
-    @Column({ type: DataTypes.INTEGER, allowNull: true })
-    Status: number;
 
-    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsDeleted: boolean;
-
-    @ForeignKey(() => Role)
-    @Column({ type: DataTypes.INTEGER, allowNull: true })
-    RoleId: number;
+    @Column({ type: DataTypes.DATE, allowNull: true })
+    ModifiedDate: Date;
 
     @BelongsTo(() => AccUser)
     accUser: AccUser;
 
-    // @BelongsToMany(() => Region, { through: "AdminRegion" })
-    // regions: Region[];
-
-    @BelongsTo(() => Role)
-    roles: Role[];
+    @BelongsTo(() => Region)
+    region: Region;
 }
 
-export default Admin;
+export default User;

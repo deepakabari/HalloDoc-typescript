@@ -7,3 +7,8 @@ export * from './adminregion.interface'
 export * from './region.interface';
 export * from './role.interface';
 export * from './requeststatuslog.interface'
+export * from './request.interface'
+export * from './physician.interface'
+export * from './user.interface'
+
+export * from './test.interface'

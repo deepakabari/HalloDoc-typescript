@@ -1,23 +1,13 @@
-import {
-    Table,
-    Column,
-    Model,
-    BelongsToMany,
-    HasMany,
-} from "sequelize-typescript";
+import { Table, Column, Model } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
-import { AccUserAttributes, AccUserCreationAttributes } from "../../interfaces";
-import AccRole from "./accrole.model";
-import Admin from "./admin.model";
-import Physician from "./physician.model";
-import User from "./user.model";
+import { TestAttributes, TestCreationAttributes } from "../../interfaces";
 
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "accuser",
+    tableName: "Test",
 })
-class AccUser extends Model<AccUserAttributes, AccUserCreationAttributes> {
+class Test extends Model<TestAttributes, TestCreationAttributes> {
     @Column({
         primaryKey: true,
         allowNull: false,
@@ -32,7 +22,7 @@ class AccUser extends Model<AccUserAttributes, AccUserCreationAttributes> {
     @Column({ type: DataTypes.STRING, allowNull: true })
     Password: string;
 
-    @Column({ type: DataTypes.STRING, allowNull: true })
+    @Column({ type: DataTypes.STRING, allowNull: false })
     Email: string;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
@@ -49,18 +39,6 @@ class AccUser extends Model<AccUserAttributes, AccUserCreationAttributes> {
 
     @Column({ type: DataTypes.DATE, allowNull: true })
     expireToken: Date;
-
-    // @BelongsToMany(() => AccRole, { through: "AccUserRole" })
-    // roles: AccRole[];
-
-    @HasMany(() => Admin)
-    admins: Admin[];
-
-    @HasMany(() => Physician)
-    physicians: Physician[];
-
-    @HasMany(() => User)
-    users: User[];
 }
 
-export default AccUser;
+export default Test;

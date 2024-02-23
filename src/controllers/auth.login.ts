@@ -1,4 +1,3 @@
-import Admin from "../db/models";
 import AppError from "../utils/errorHandler";
 import httpCode from "../constants/http.constant";
 import messageConstant from "../constants/message.constant";
@@ -8,7 +7,9 @@ import { Controller } from "../interfaces";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 import { Op } from "sequelize";
-require("dotenv").config();
+import AccUser from "../db/models/accuser.model";
+import dotenv from "dotenv";
+dotenv.config();
 
 const SECRET = process.env.SECRET;
 const EXPIRESIN = process.env.EXPIRESIN;
@@ -22,8 +23,8 @@ export const login: Controller = async (req, res) => {
         const { email, password } = req.body;
 
         // Find user in database
-        const user = await Admin.findOne({
-            where: { email },
+        const user = await AccUser.findOne({
+            where: { Email: email },
         });
 
         // if user not found then give an error
@@ -35,10 +36,7 @@ export const login: Controller = async (req, res) => {
         }
 
         // Check if password matches
-        const isPasswordMatch = await bcrypt.compare(
-            password,
-            user.PasswordHash
-        );
+        const isPasswordMatch = await bcrypt.compare(password, user.Password);
 
         // if password matches with the password stored in the database then generate a new access token
         if (isPasswordMatch) {
@@ -58,6 +56,7 @@ export const login: Controller = async (req, res) => {
             });
         }
     } catch (error: any) {
+        console.log(error);
         return AppError(error, req, res);
     }
 };
@@ -69,8 +68,8 @@ export const forgotPassword: Controller = async (req, res) => {
         const { email } = req.body;
 
         // Check if user exists in the database
-        const existingUser = await Admin.findOne({
-            where: { email },
+        const existingUser = await AccUser.findOne({
+            where: { Email: email },
         });
 
         // if user not found then give an error
@@ -101,12 +100,12 @@ export const forgotPassword: Controller = async (req, res) => {
         expireToken.setMinutes(expireToken.getMinutes() + 15);
 
         // update the resetToken and expireToken to the Admin table
-        await Admin.update(
+        await AccUser.update(
             {
                 resetToken: hashedToken,
                 expireToken,
             },
-            { where: { email } }
+            { where: { Email: email } }
         );
 
         const resetLink = `http://localhost:3000/admin/resetPassword/${hashedToken}`;
@@ -142,7 +141,7 @@ export const resetPassword: Controller = async (req, res) => {
         const { hash } = req.params;
 
         // Find user in database with matching email and reset token
-        const user = await Admin.findOne({
+        const user = await AccUser.findOne({
             where: {
                 resetToken: hash,
                 expireToken: { [Op.gt]: new Date() }, // Ensure that the reset token is not expired
@@ -170,10 +169,11 @@ export const resetPassword: Controller = async (req, res) => {
             newPassword,
             Number(ITERATION)
         );
+
         // Update user's password, resetToken, and expireToken
-        await Admin.update(
+        await AccUser.update(
             {
-                PasswordHash: hashedPassword,
+                Password: hashedPassword,
                 resetToken: null,
                 expireToken: null,
             },
@@ -189,4 +189,3 @@ export const resetPassword: Controller = async (req, res) => {
         return AppError(error, req, res);
     }
 };
-

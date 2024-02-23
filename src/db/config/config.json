@@ -2,21 +2,21 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "halloDoc-ts",
+    "database": "halloDoc_ts",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "halloDoc-ts",
+    "database": "halloDoc_ts",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": null,
-    "database": "halloDoc-ts",
+    "database": "halloDoc_ts",
     "host": "localhost",
     "dialect": "mysql"
   }
