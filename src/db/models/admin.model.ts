@@ -9,14 +9,12 @@ import {
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
 import { AdminAttributes, AdminCreationAttributes } from "../../interfaces";
-import AccUser from "./accuser.model";
-import Region from "./region.model";
-import Role from "./role.model";
+import {Account, Region, Role } from "./index";
 
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "admin",
+    tableName: "Admin",
 })
 class Admin extends Model<AdminAttributes, AdminCreationAttributes> {
     @Column({
@@ -27,9 +25,9 @@ class Admin extends Model<AdminAttributes, AdminCreationAttributes> {
     })
     id: number;
 
-    @ForeignKey(() => AccUser)
+    @ForeignKey(() => Account)
     @Column({ type: DataTypes.INTEGER, allowNull: false })
-    AccUserId: number;
+    AccountUserId: number;
 
     @Column({ type: DataTypes.STRING, allowNull: false })
     FirstName: string;
@@ -61,11 +59,11 @@ class Admin extends Model<AdminAttributes, AdminCreationAttributes> {
     @Column({ type: DataTypes.STRING, allowNull: true })
     AltPhone: string;
 
-    @ForeignKey(() => AccUser)
+    @ForeignKey(() => Account)
     @Column({ type: DataTypes.STRING, allowNull: false })
     CreatedBy: string;
 
-    @ForeignKey(() => AccUser)
+    @ForeignKey(() => Account)
     @Column({ type: DataTypes.STRING, allowNull: true })
     ModifiedBy: string;
 
@@ -79,14 +77,17 @@ class Admin extends Model<AdminAttributes, AdminCreationAttributes> {
     @Column({ type: DataTypes.INTEGER, allowNull: true })
     RoleId: number;
 
-    @BelongsTo(() => AccUser)
-    accUser: AccUser;
+    @Column({ type: DataTypes.DATE, allowNull: true })
+    deletedAt: Date;
+
+    @BelongsTo(() => Account)
+    accountUser: Account;
 
     // @BelongsToMany(() => Region, { through: "AdminRegion" })
     // regions: Region[];
 
     @BelongsTo(() => Role)
-    roles: Role[];
+    role: Role;
 }
 
 export default Admin;

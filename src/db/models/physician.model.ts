@@ -6,9 +6,7 @@ import {
     BelongsTo,
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
-import AccUser from "./accuser.model";
-import Region from "./region.model";
-import Role from "./role.model";
+import {Account,  Region, Role } from "./index";
 import {
     PhysicianAttributes,
     PhysicianCreationAttributes,
@@ -17,7 +15,7 @@ import {
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "physician",
+    tableName: "Physician",
 })
 class Physician extends Model<
     PhysicianAttributes,
@@ -31,9 +29,9 @@ class Physician extends Model<
     })
     PhysicianId: number;
 
-    @ForeignKey(() => AccUser)
+    @ForeignKey(() => Account)
     @Column({ type: DataTypes.STRING, allowNull: true })
-    AccUserId: string;
+    AccountUserId: string;
 
     @Column({ type: DataTypes.STRING, allowNull: false })
     FirstName: string;
@@ -87,14 +85,14 @@ class Physician extends Model<
     @Column({ type: DataTypes.STRING, allowNull: true })
     AltPhone: string;
 
-    @ForeignKey(() => AccUser)
+    @ForeignKey(() => Account)
     @Column({ type: DataTypes.STRING, allowNull: false })
     CreatedBy: string;
 
     @Column({ type: DataTypes.DATE, allowNull: false })
     CreatedDate: Date;
 
-    @ForeignKey(() => AccUser)
+    @ForeignKey(() => Account)
     @Column({ type: DataTypes.STRING, allowNull: true })
     ModifiedBy: string;
 
@@ -135,11 +133,11 @@ class Physician extends Model<
     @Column({ type: DataTypes.STRING, allowNull: true })
     SyncEmailAddress: string;
 
-    @BelongsTo(() => AccUser, "AccUserId")
-    createdByUser: AccUser;
+    @Column({ type: DataTypes.DATE, allowNull: true })
+    deletedAt: Date;
 
-    @BelongsTo(() => AccUser, "ModifiedBy")
-    modifiedByUser: AccUser;
+    @BelongsTo(() => Account)
+    accountUser: Account;
 
     @BelongsTo(() => Region)
     region: Region;

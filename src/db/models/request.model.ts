@@ -4,12 +4,12 @@ import {
     RequestAttributes,
     RequestCreationAttributes,
 } from "../../interfaces/";
-import RequestStatusLog from "./requeststatuslog.model";
+import { RequestStatusLog } from "./index";
 
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "request",
+    tableName: "Request",
 })
 class Request extends Model<RequestAttributes, RequestCreationAttributes> {
     @Column({
@@ -163,6 +163,9 @@ class Request extends Model<RequestAttributes, RequestCreationAttributes> {
         type: DataTypes.INTEGER,
     })
     CreatedUserId?: number;
+
+    @Column({ type: DataTypes.DATE, allowNull: true })
+    deletedAt: Date;
 
     @HasOne(() => RequestStatusLog)
     requestStatusLog: RequestStatusLog;

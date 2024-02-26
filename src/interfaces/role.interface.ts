@@ -9,6 +9,7 @@ interface RoleAttributes {
     UpdatedBy?: string
     updatedAt?: string
     IsDeleted: boolean
+    deletedAt?: Date | null
 }
 
 type RoleCreationAttributes = Optional<RoleAttributes, "id">;

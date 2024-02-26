@@ -1,15 +1,21 @@
-import { Table, Column, Model, BelongsTo, ForeignKey } from "sequelize-typescript";
+import {
+    Table,
+    Column,
+    Model,
+    BelongsTo,
+    ForeignKey,
+} from "sequelize-typescript";
 import { DataTypes } from "sequelize";
 import {
     RequestStatusLogAttributes,
     RequestStatusLogCreationAttributes,
 } from "../../interfaces";
-import Request from "./request.model";
+import { Request } from "./index";
 
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "requeststatuslog",
+    tableName: "RequestStatusLog",
 })
 class RequestStatusLog extends Model<
     RequestStatusLogAttributes,
@@ -59,6 +65,9 @@ class RequestStatusLog extends Model<
         allowNull: true,
     })
     Notes: string;
+
+    @Column({ type: DataTypes.DATE, allowNull: true })
+    deletedAt: Date;
 
     @BelongsTo(() => Request)
     request: Request;

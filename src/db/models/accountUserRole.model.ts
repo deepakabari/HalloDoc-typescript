@@ -1,26 +1,26 @@
 import { Table, Column, Model } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
-import { AccUserRoleAttributes } from "../../interfaces";
+import { AccountUserRoleAttributes } from "../../interfaces";
 
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "accuserrole",
+    tableName: "AccountUserRole",
 })
-class AccUserRole extends Model<AccUserRoleAttributes> {
+class AccountUserRole extends Model<AccountUserRoleAttributes> {
     @Column({
         primaryKey: true,
         allowNull: false,
         type: DataTypes.INTEGER,
     })
-    AccUserId: number;
+    AccountUserId: number;
 
     @Column({
         primaryKey: true,
         allowNull: false,
         type: DataTypes.INTEGER,
     })
-    AccRoleId: number;
+    AccountRoleId: number;
 }
 
-export default AccUserRole;
+export default AccountUserRole;

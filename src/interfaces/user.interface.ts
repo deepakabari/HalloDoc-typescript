@@ -2,7 +2,7 @@ import { Optional } from 'sequelize';
 
 interface UserAttributes {
     id: number;
-    AccUserId: number;
+    AccountUserId: number;
     FirstName: string
     LastName?: string
     Email: string
@@ -23,6 +23,7 @@ interface UserAttributes {
     createdAt: Date
     ModifiedBy?: string
     updatedAt?: Date
+    deletedAt?: Date | null
 }
 
 type UserCreationAttributes = Optional<UserAttributes, "id">;

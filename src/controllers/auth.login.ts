@@ -7,7 +7,7 @@ import { Controller } from "../interfaces";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 import { Op } from "sequelize";
-import AccUser from "../db/models/accuser.model";
+import AccUser from "../db/models/account.model";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -36,7 +36,7 @@ export const login: Controller = async (req, res) => {
         }
 
         // Check if password matches
-        const isPasswordMatch = await bcrypt.compare(password, user.Password);
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
 
         // if password matches with the password stored in the database then generate a new access token
         if (isPasswordMatch) {

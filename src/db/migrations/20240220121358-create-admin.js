@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable("Admins", {
+        await queryInterface.createTable("Admin", {
             id: {
                 allowNull: false,
                 autoIncrement: true,
@@ -57,17 +57,9 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            createdAt: {
-                allowNull: false,
-                type: Sequelize.DATE,
-            },
             ModifiedBy: {
                 type: Sequelize.STRING,
                 allowNull: true,
-            },
-            updatedAt: {
-                allowNull: true,
-                type: Sequelize.DATE,
             },
             Status: {
                 type: Sequelize.INTEGER,
@@ -81,9 +73,21 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 allowNull: true,
             },
+            createdAt: {
+                allowNull: false,
+                type: Sequelize.DATE,
+            },
+            updatedAt: {
+                allowNull: true,
+                type: Sequelize.DATE,
+            },
+            deletedAt: {
+                type: Sequelize.DATE,
+                allowNull: true,
+            },
         });
     },
     async down(queryInterface, Sequelize) {
-        await queryInterface.dropTable("Admins");
+        await queryInterface.dropTable("Admin");
     },
 };

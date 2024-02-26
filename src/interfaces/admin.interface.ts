@@ -2,7 +2,7 @@ import { Optional } from "sequelize";
 
 interface AdminAttributes {
     id: number;
-    AccUserId: number;
+    AccountUserId: number;
     FirstName: string;
     LastName?: string;
     Email: string;
@@ -20,6 +20,7 @@ interface AdminAttributes {
     Status?: string;
     IsDeleted?: boolean;
     RoleId?: number;
+    deletedAt?: Date | null
 }
 
 type AdminCreationAttributes = Optional<AdminAttributes, "id">;

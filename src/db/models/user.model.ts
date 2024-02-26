@@ -6,13 +6,12 @@ import {
     BelongsTo,
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
-import Region from "./region.model";
-import AccUser from "./accuser.model";
+import {Account, Region } from "./index";
 
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "user",
+    tableName: "User",
 })
 class User extends Model {
     @Column({
@@ -23,9 +22,9 @@ class User extends Model {
     })
     UserId: number;
 
-    @ForeignKey(() => AccUser)
+    @ForeignKey(() => Account)
     @Column({ type: DataTypes.STRING, allowNull: true })
-    AccUserId: string;
+    AccountUserId: string;
 
     @Column({ type: DataTypes.STRING, allowNull: false })
     FirstName: string;
@@ -69,30 +68,26 @@ class User extends Model {
 
     @Column({ type: DataTypes.INTEGER, allowNull: true })
     Status: number;
-    
+
     @Column({ type: DataTypes.BOOLEAN, allowNull: true })
     IsDeleted: boolean;
-    
+
     @Column({ type: DataTypes.BOOLEAN, allowNull: true })
     IsRequestWithEmail: boolean;
-    
-    @ForeignKey(() => AccUser)
+
+    @ForeignKey(() => Account)
     @Column({ type: DataTypes.STRING, allowNull: false })
     CreatedBy: string;
 
-    @Column({ type: DataTypes.DATE, allowNull: false })
-    CreatedDate: Date;
-
-    @ForeignKey(() => AccUser)
+    @ForeignKey(() => Account)
     @Column({ type: DataTypes.STRING, allowNull: true })
     ModifiedBy: string;
 
-
     @Column({ type: DataTypes.DATE, allowNull: true })
-    ModifiedDate: Date;
+    deletedAt: Date;
 
-    @BelongsTo(() => AccUser)
-    accUser: AccUser;
+    @BelongsTo(() => Account)
+    accountUser: Account;
 
     @BelongsTo(() => Region)
     region: Region;

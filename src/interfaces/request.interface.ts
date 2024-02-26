@@ -28,6 +28,7 @@ interface RequestAttributes {
     CreatedUserId?: number
     createdAt: Date
     updatedAt?: Date
+    deletedAt?: Date | null
 }
 
 type RequestCreationAttributes = Optional<RequestAttributes, "id">;

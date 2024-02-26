@@ -1,21 +1,46 @@
 import { Sequelize } from "sequelize-typescript";
-import dotenv from 'dotenv';
-dotenv.config();
-
-
 import path from "path";
+import {
+    Account,
+    AccountRole,
+    AccountUserRole,
+    Admin,
+    Region,
+    AdminRegion,
+    Physician,
+    Role,
+    Request,
+    RequestStatusLog,
+    User,
+} from "../models/index";
+import dotenv from "dotenv";
+dotenv.config();
 
 const dbName = process.env.DB_NAME as string;
 const dbUser = process.env.DB_USER as string;
-const dbHost = process.env.DB_HOST as string;
+const dbHost = process.env.DB_HOST;
 const dbPassword = process.env.DB_PASSWORD;
 
 export const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
     host: dbHost,
-    dialect: 'mysql',
-})
-
-sequelize.addModels([path.join(__dirname, "../models/*.model.ts")]);
+    dialect: "mysql",
+    define: {
+        freezeTableName: true,
+    },
+    models: [
+        Account,
+        AccountRole,
+        AccountUserRole,
+        Admin,
+        Region,
+        AdminRegion,
+        Physician,
+        Role,
+        Request,
+        RequestStatusLog,
+        User,
+    ],
+});
 
 export const dbConnection = async (): Promise<Sequelize> => {
     await sequelize

@@ -1,13 +1,12 @@
 import { Table, Column, Model, HasMany } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
 import { RoleAttributes, RoleCreationAttributes } from "../../interfaces";
-import Admin from "./admin.model";
-import Physician from "./physician.model";
+import { Admin, Physician } from "./index";
 
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "role",
+    tableName: "Role",
 })
 class Role extends Model<RoleAttributes, RoleCreationAttributes> {
     @Column({
@@ -47,6 +46,9 @@ class Role extends Model<RoleAttributes, RoleCreationAttributes> {
         allowNull: false,
     })
     IsDeleted: boolean;
+
+    @Column({ type: DataTypes.DATE, allowNull: true })
+    deletedAt: Date;
 
     @HasMany(() => Admin)
     admins: Admin[];
