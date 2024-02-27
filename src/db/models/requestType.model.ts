@@ -1,4 +1,4 @@
-import { Model, Table, Column, HasMany } from "sequelize-typescript";
+import { Model, Table, Column, HasMany, BelongsTo } from "sequelize-typescript";
 import DataTypes from "sequelize";
 import {
     RequestTypeAttributes,
@@ -28,6 +28,9 @@ class RequestType extends Model<
         type: DataTypes.STRING,
     })
     name: string;
+
+    @BelongsTo(() => Request, { foreignKey: "requestTypeId", targetKey: "id"})
+    request: Request
 }
 
 export default RequestType;

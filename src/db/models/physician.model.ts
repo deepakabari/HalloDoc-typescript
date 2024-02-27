@@ -5,6 +5,7 @@ import {
     ForeignKey,
     BelongsTo,
     HasOne,
+    HasMany,
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
 import { Account, Region, Role } from "./index";
@@ -31,7 +32,7 @@ class Physician extends Model<
     id: number;
 
     @Column({ type: DataTypes.INTEGER, allowNull: false })
-    AccountId: number;
+    accountId: number;
 
     @Column({ type: DataTypes.STRING, allowNull: false })
     firstName: string;
@@ -117,8 +118,20 @@ class Physician extends Model<
     @Column({ type: DataTypes.STRING, allowNull: true })
     syncEmailAddress: string;
 
-    @HasOne(() => Account, { foreignKey: "id", sourceKey: "AccountId" })
+    @HasOne(() => Account, { foreignKey: "id", sourceKey: "accountId" })
     account: Account;
+
+    @HasOne(() => Region, { foreignKey: "id", sourceKey: "regionId" })
+    region: Region;
+
+    @HasOne(() => Role, { foreignKey: "id", sourceKey: "roleId"})
+    role: Role;
+
+    // @BelongsTo(() => Request, { foreignKey: "physicianId", targetKey: "id"})
+    // request: Request;
+
+    @HasMany(() => Request, { foreignKey: "physicianId", sourceKey: "id"})
+    requests: Request[]
 }
 
 export default Physician;

@@ -1,7 +1,7 @@
-import { Table, Column, Model, HasMany, HasOne } from "sequelize-typescript";
+import { Table, Column, Model, HasMany, HasOne, BelongsTo } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
 import { RoleAttributes, RoleCreationAttributes } from "../../interfaces";
-import { Admin } from './index'
+import { Admin, Physician } from './index'
 
 @Table({
     timestamps: true,
@@ -37,6 +37,9 @@ class Role extends Model<RoleAttributes, RoleCreationAttributes> {
 
     @HasOne(() => Admin, { foreignKey: "roleId", sourceKey: "id"})
     admin: Admin;
+
+    @BelongsTo(() => Physician, { foreignKey: "roleId", targetKey: "id"})
+    physician: Physician
 }
 
 export default Role;

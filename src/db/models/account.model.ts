@@ -8,7 +8,6 @@ import {
 } from "sequelize-typescript";
 import { AccountAttributes, AccountCreationAttributes } from "../../interfaces";
 import { DataTypes } from "sequelize";
-import { Admin, User } from "./index";
 
 @Table({
     timestamps: true,

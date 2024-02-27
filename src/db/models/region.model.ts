@@ -9,7 +9,7 @@ import {
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
 import { RegionAttributes, RegionCreationAttributes } from "../../interfaces";
-import { Admin } from "./index";
+import { Admin, Physician, User } from "./index";
 
 @Table({
     timestamps: true,
@@ -42,5 +42,11 @@ class Region extends Model<RegionAttributes, RegionCreationAttributes> {
 
     @BelongsTo(() => Admin, { foreignKey: "regionId", targetKey: "id"})
     admin: Admin;
+
+    @BelongsTo(() => Physician, { foreignKey: "regionId", targetKey: "id"})
+    physician: Physician
+
+    @BelongsTo(() => User, { foreignKey: "regionId", targetKey: "id"})
+    user: User
 }
 export default Region;

@@ -8,7 +8,7 @@ import {
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
 import { UserAttributes, UserCreationAttributes } from "../../interfaces";
-import { Account } from "./index";
+import { Account, Region } from "./index";
 
 @Table({
     timestamps: true,
@@ -74,6 +74,9 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
 
     @HasOne(() => Account, { foreignKey: "id", sourceKey: "AccountId"})
     account: Account;
+
+    @HasOne(() => Region, { foreignKey: "id", sourceKey:"regionId"})
+    region: Region;
 }
 
 export default User;

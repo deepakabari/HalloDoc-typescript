@@ -11,6 +11,7 @@ import {
     RequestAttributes,
     RequestCreationAttributes,
 } from "../../interfaces/";
+import {Physician, RequestType} from "./index";
 
 @Table({
     timestamps: true,
@@ -151,6 +152,15 @@ class Request extends Model<RequestAttributes, RequestCreationAttributes> {
         type: DataTypes.STRING,
     })
     caseTagPhysician?: string;
-}
+
+    @HasOne(() => RequestType, {foreignKey: "id", sourceKey: "requestTypeId"})
+    requestType: RequestType
+
+    // @HasOne(() => Physician, { foreignKey: "id", sourceKey: "physicianId"})
+    // physician: Physician
+
+    @BelongsTo(() => Physician, { foreignKey: "id", targetKey: "physicianId"})
+    physician: Physician
+ }
 
 export default Request;
