@@ -1,15 +1,14 @@
 import {
-    Table,
     Column,
-    Model,
-    BelongsTo,
     ForeignKey,
-    BelongsToMany,
-    HasMany,
+    BelongsTo,
+    Model,
+    Table,
+    HasOne,
 } from "sequelize-typescript";
-import { DataTypes } from "sequelize";
 import { AdminAttributes, AdminCreationAttributes } from "../../interfaces";
-import {Account, Region, Role } from "./index";
+import { DataTypes } from "sequelize";
+import { Account, Region, Role } from "./index";
 
 @Table({
     timestamps: true,
@@ -18,76 +17,65 @@ import {Account, Region, Role } from "./index";
 })
 class Admin extends Model<AdminAttributes, AdminCreationAttributes> {
     @Column({
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true,
         type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
     })
     id: number;
 
-    @ForeignKey(() => Account)
     @Column({ type: DataTypes.INTEGER, allowNull: false })
-    AccountUserId: number;
+    accountId: number;
 
     @Column({ type: DataTypes.STRING, allowNull: false })
-    FirstName: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    LastName: string;
+    firstName: string;
 
     @Column({ type: DataTypes.STRING, allowNull: false })
-    Email: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    Mobile: string;
+    lastName: string;
 
     @Column({ type: DataTypes.STRING, allowNull: false })
-    Address1: string;
+    email: string;
 
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    Address2: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    City: string;
-
-    @Column({ type: DataTypes.INTEGER, allowNull: true })
-    RegionId: number;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    Zip: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    AltPhone: string;
-
-    @ForeignKey(() => Account)
     @Column({ type: DataTypes.STRING, allowNull: false })
-    CreatedBy: string;
+    phoneNumber: string;
 
-    @ForeignKey(() => Account)
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    ModifiedBy: string;
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    address1: string;
 
-    @Column({ type: DataTypes.INTEGER, allowNull: true })
-    Status: number;
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    address2: string;
 
-    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsDeleted: boolean;
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    city: string;
 
-    @ForeignKey(() => Role)
-    @Column({ type: DataTypes.INTEGER, allowNull: true })
-    RoleId: number;
+    @Column({ type: DataTypes.INTEGER, allowNull: false })
+    regionId: number;
 
-    @Column({ type: DataTypes.DATE, allowNull: true })
-    deletedAt: Date;
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    zipCode: string;
 
-    @BelongsTo(() => Account)
-    accountUser: Account;
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    altPhone: string;
 
-    // @BelongsToMany(() => Region, { through: "AdminRegion" })
-    // regions: Region[];
+    @Column({ type: DataTypes.INTEGER, allowNull: false })
+    status: number;
 
-    @BelongsTo(() => Role)
-    role: Role;
+    @Column({ type: DataTypes.BOOLEAN, allowNull: false })
+    isDeleted: boolean;
+
+    @Column({ type: DataTypes.INTEGER, allowNull: false })
+    roleId: number;
+
+    @HasOne(() => Account, { foreignKey: "AccountId", sourceKey: "id" })
+    account: Account;
+
+    // @BelongsTo(() => Region, { foreignKey: "regionId", targetKey: "id" })
+    // region: Region;
+    
+    @HasOne(() => Region, { foreignKey: "id", sourceKey: "regionId"})
+    region: Region;
+
+    @BelongsTo(() => Role, { foreignKey: "roleId", targetKey: "id"})
+    role: Role
 }
-
 export default Admin;

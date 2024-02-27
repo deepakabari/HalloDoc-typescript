@@ -5,10 +5,11 @@ import {
     BelongsToMany,
     HasOne,
     HasMany,
+    BelongsTo,
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
 import { RegionAttributes, RegionCreationAttributes } from "../../interfaces";
-import { Admin, Physician } from "./index";
+import { Admin } from "./index";
 
 @Table({
     timestamps: true,
@@ -36,13 +37,10 @@ class Region extends Model<RegionAttributes, RegionCreationAttributes> {
     })
     Abbreviation?: string;
 
-    @Column({ type: DataTypes.DATE, allowNull: true })
-    deletedAt: Date;
+    // @HasOne(() => Admin, { foreignKey: "regionId", sourceKey: "id" })
+    // admin: Admin;
 
-    // @BelongsToMany(() => Admin, { through: "AdminRegion" })
-    // admins: Admin[];
-
-    @HasMany(() => Physician)
-    physicians: Physician[];
+    @BelongsTo(() => Admin, { foreignKey: "regionId", targetKey: "id"})
+    admin: Admin;
 }
 export default Region;

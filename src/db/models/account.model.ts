@@ -1,75 +1,43 @@
 import {
-    Table,
     Column,
+    ForeignKey,
+    BelongsTo,
     Model,
-    BelongsToMany,
-    HasMany,
+    Table,
+    HasOne,
 } from "sequelize-typescript";
+import { AccountAttributes, AccountCreationAttributes } from "../../interfaces";
 import { DataTypes } from "sequelize";
-import {
-    AccountUserAttributes,
-    AccountUserCreationAttributes,
-} from "../../interfaces";
-import { AccountRole, AccountUserRole, Admin, Physician, User } from "./index";
+import { Admin, User } from "./index";
 
 @Table({
     timestamps: true,
     paranoid: true,
+    tableName: "Admin",
 })
-class Account extends Model<
-    AccountUserAttributes,
-    AccountUserCreationAttributes
-> {
+class Account extends Model<AccountAttributes, AccountCreationAttributes> {
     @Column({
-        primaryKey: true,
-        allowNull: false,
-        autoIncrement: true,
         type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
     })
     id: number;
 
     @Column({ type: DataTypes.STRING, allowNull: false })
     userName: string;
 
-    @Column({ type: DataTypes.STRING, allowNull: true })
+    @Column({ type: DataTypes.STRING, allowNull: false })
     password: string;
 
-    @Column({ type: DataTypes.STRING, allowNull: true })
+    @Column({ type: DataTypes.STRING, allowNull: false })
     email: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    phoneNumber: string;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
     resetToken: string;
 
     @Column({ type: DataTypes.DATE, allowNull: true })
     expireToken: Date;
-
-    // @BelongsToMany(() => AccountRole, {
-    //     through: () => AccountUserRole,
-    // })
-    // userRoles: AccountRole[];
-
-    // @BelongsToMany(
-    //     () => AccountRole,
-    //     () => AccountUserRole,
-    //     "accountUserId",
-    //     "accountRoleId"
-    // )
-    // userRoles: AccountRole[];
-
-    // @BelongsToMany(() => AccountRole, {through: "AccountUserRole"})
-    // userRoles: AccountRole[];
-
-    // @HasMany(() => Admin)
-    // admins: Admin[];
-
-    // @HasMany(() => Physician)
-    // physicians: Physician[];
-
-    // @HasMany(() => User)
-    // users: User[];
 }
 
 export default Account;

@@ -4,6 +4,8 @@ interface RegionAttributes {
     id: number;
     Name: string;
     Abbreviation?: string
+    createdAt: Date
+    updatedAt: Date
     deletedAt?: Date | null
 }
 

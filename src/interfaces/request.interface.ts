@@ -2,32 +2,29 @@ import { Optional } from "sequelize";
 
 interface RequestAttributes {
     id: number;
-    RequestTypeId: number;
-    UserId?: number;
-    FirstName?: string;
-    LastName?: string;
-    PhoneNumber?: string;
-    Email?: string;
-    Status: string;
-    PhysicianId?: number;
-    ConfirmationNumber?: string;
-    IsDeleted?: boolean;
-    DeclinedBy?: string;
-    IsUrgentEmailSent: boolean;
-    LastWellnessDate?: Date;
-    IsMobile?: boolean;
-    CallType?: number;
-    CompletedByPhysician?: boolean;
-    LastReservationDate?: Date;
-    AcceptedDate?: Date;
-    RelationName?: string;
-    CaseNumber?: string;
-    CaseTag?: string;
-    CaseTagPhysician?: string;
-    PatientAccountId?: string
-    CreatedUserId?: number
+    requestTypeId: number;
+    userId: number;
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    email: string;
+    status: string;
+    physicianId?: number;
+    confirmationNumber?: string;
+    isDeleted?: boolean;
+    declinedBy?: number;
+    isUrgentEmailSent: boolean;
+    lastWellnessDate?: Date;
+    callType?: number;
+    completedByPhysician?: boolean;
+    lastReservationDate?: Date;
+    acceptedDate?: Date;
+    relationName?: string;
+    caseNumber?: string;
+    caseTag?: string;
+    caseTagPhysician?: string;
     createdAt: Date
-    updatedAt?: Date
+    updatedAt: Date
     deletedAt?: Date | null
 }
 

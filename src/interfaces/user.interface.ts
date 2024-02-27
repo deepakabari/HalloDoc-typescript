@@ -2,27 +2,23 @@ import { Optional } from 'sequelize';
 
 interface UserAttributes {
     id: number;
-    AccountUserId: number;
-    FirstName: string
-    LastName?: string
-    Email: string
-    Mobile?: string
-    IsMobile?: boolean
-    Street?: string
-    City?: string
-    State?: string
-    RegionId?: number
-    ZipCode?: string
+    firstName: string
+    lastName?: string
+    email: string
+    phoneNumber: string
+    street: string
+    city: string
+    state: string
+    regionId: number
+    zipCode: string
     strMonth?: string
     intYear?: number
     intDate?: number
-    Status?: number
-    IsDeleted?: boolean
-    IsRequestWithEmail?: boolean
-    CreatedBy: string
+    status?: number
+    isDeleted?: boolean
+    isRequestWithEmail?: boolean
     createdAt: Date
-    ModifiedBy?: string
-    updatedAt?: Date
+    updatedAt: Date
     deletedAt?: Date | null
 }
 

@@ -2,25 +2,22 @@ import { Optional } from "sequelize";
 
 interface AdminAttributes {
     id: number;
-    AccountUserId: number;
-    FirstName: string;
-    LastName?: string;
-    Email: string;
-    Mobile?: string;
-    Address1?: string;
-    Address2?: string;
-    City?: string;
-    RegionId?: number;
-    Zip?: string;
-    AltPhone?: string;
-    CreatedBy: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    address1: string;
+    address2: string;
+    city: string;
+    regionId: number;
+    zipCode: string;
+    status: string;
+    isDeleted: boolean;
+    roleId: number;
+    altPhone: string;
     createdAt: Date;
-    ModifiedBy?: number;
-    updatedAt?: Date;
-    Status?: string;
-    IsDeleted?: boolean;
-    RoleId?: number;
-    deletedAt?: Date | null
+    updatedAt: Date;
+    deletedAt?: Date | null;
 }
 
 type AdminCreationAttributes = Optional<AdminAttributes, "id">;

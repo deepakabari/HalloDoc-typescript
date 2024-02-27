@@ -4,9 +4,10 @@ import {
     Model,
     ForeignKey,
     BelongsTo,
+    HasOne,
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
-import {Account,  Region, Role } from "./index";
+import { Account, Region, Role } from "./index";
 import {
     PhysicianAttributes,
     PhysicianCreationAttributes,
@@ -27,123 +28,97 @@ class Physician extends Model<
         allowNull: false,
         autoIncrement: true,
     })
-    PhysicianId: number;
+    id: number;
 
-    @ForeignKey(() => Account)
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    AccountUserId: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: false })
-    FirstName: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    LastName: string;
+    @Column({ type: DataTypes.INTEGER, allowNull: false })
+    AccountId: number;
 
     @Column({ type: DataTypes.STRING, allowNull: false })
-    Email: string;
+    firstName: string;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
-    Mobile: string;
+    lastName: string;
 
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    MedicalLicense: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    Photo: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    AdminNotes: string;
-
-    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsAgreementDoc: boolean;
-
-    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsBackgroundDoc: boolean;
-
-    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsTrainingDoc: boolean;
-
-    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsNonDisclosureDoc: boolean;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    Address1: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    Address2: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    City: string;
-
-    @ForeignKey(() => Region)
-    @Column({ type: DataTypes.INTEGER, allowNull: true })
-    RegionId: number;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    Zip: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    AltPhone: string;
-
-    @ForeignKey(() => Account)
     @Column({ type: DataTypes.STRING, allowNull: false })
-    CreatedBy: string;
+    email: string;
 
-    @Column({ type: DataTypes.DATE, allowNull: false })
-    CreatedDate: Date;
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    phoneNumber: string;
 
-    @ForeignKey(() => Account)
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    medicalLicense: string;
+
     @Column({ type: DataTypes.STRING, allowNull: true })
-    ModifiedBy: string;
+    photo: string;
 
-    @Column({ type: DataTypes.DATE, allowNull: true })
-    ModifiedDate: Date;
+    @Column({ type: DataTypes.STRING, allowNull: true })
+    adminNotes: string;
+
+    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
+    isAgreementDoc: boolean;
+
+    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
+    isBackgroundDoc: boolean;
+
+    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
+    isTrainingDoc: boolean;
+
+    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
+    isNonDisclosureDoc: boolean;
+
+    @Column({ type: DataTypes.STRING, allowNull: true })
+    address1: string;
+
+    @Column({ type: DataTypes.STRING, allowNull: true })
+    address2: string;
+
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    city: string;
+
+    @Column({ type: DataTypes.INTEGER, allowNull: false })
+    regionId: number;
+
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    zipCode: string;
+
+    @Column({ type: DataTypes.STRING, allowNull: true })
+    altPhone: string;
+
+    @Column({ type: DataTypes.INTEGER, allowNull: false })
+    status: number;
+
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    businessName: string;
+
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    businessWebsite: string;
+
+    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
+    isDeleted: boolean;
 
     @Column({ type: DataTypes.INTEGER, allowNull: true })
-    Status: number;
-
-    @Column({ type: DataTypes.STRING, allowNull: false })
-    BusinessName: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: false })
-    BusinessWebsite: string;
-
-    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsDeleted: boolean;
-
-    @ForeignKey(() => Role)
-    @Column({ type: DataTypes.INTEGER, allowNull: true })
-    RoleId: number;
+    roleId: number;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
     NPINumber: string;
 
     @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsLicenseDoc: boolean;
+    isLicenseDoc: boolean;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
-    Signature: string;
+    signature: string;
 
     @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsCredentialDoc: boolean;
+    isCredentialDoc: boolean;
 
     @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsTokenGenerate: boolean;
+    isTokenGenerate: boolean;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
-    SyncEmailAddress: string;
+    syncEmailAddress: string;
 
-    @Column({ type: DataTypes.DATE, allowNull: true })
-    deletedAt: Date;
-
-    @BelongsTo(() => Account)
-    accountUser: Account;
-
-    @BelongsTo(() => Region)
-    region: Region;
-
-    @BelongsTo(() => Role)
-    role: Role;
+    @HasOne(() => Account, { foreignKey: "id", sourceKey: "AccountId" })
+    account: Account;
 }
 
 export default Physician;

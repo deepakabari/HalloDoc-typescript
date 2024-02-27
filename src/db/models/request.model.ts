@@ -1,10 +1,16 @@
-import { Table, Column, Model, HasOne } from "sequelize-typescript";
+import {
+    Table,
+    Column,
+    Model,
+    HasOne,
+    BelongsTo,
+    ForeignKey,
+} from "sequelize-typescript";
 import { DataTypes } from "sequelize";
 import {
     RequestAttributes,
     RequestCreationAttributes,
 } from "../../interfaces/";
-import { RequestStatusLog } from "./index";
 
 @Table({
     timestamps: true,
@@ -24,151 +30,127 @@ class Request extends Model<RequestAttributes, RequestCreationAttributes> {
         allowNull: false,
         type: DataTypes.INTEGER,
     })
-    RequestTypeId: number;
+    requestTypeId: number;
 
     @Column({
         allowNull: true,
         type: DataTypes.INTEGER,
     })
-    UserId?: number;
+    userId: number;
 
     @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
-    FirstName?: string;
+    firstName: string;
 
     @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
-    LastName?: string;
+    lastName: string;
 
     @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
-    PhoneNumber?: string;
+    phoneNumber: string;
 
     @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
-    Email?: string;
+    email: string;
 
     @Column({
         allowNull: false,
         type: DataTypes.INTEGER,
     })
-    Status: number;
+    status: number;
 
     @Column({
         allowNull: true,
         type: DataTypes.INTEGER,
     })
-    PhysicianId?: number;
+    physicianId?: number;
 
     @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
-    ConfirmationNumber?: string;
+    confirmationNumber?: string;
 
     @Column({
         allowNull: true,
         type: DataTypes.BOOLEAN,
     })
-    IsDeleted?: boolean;
+    isDeleted?: boolean;
 
     @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
-    DeclinedBy?: string;
+    declinedBy?: string;
 
     @Column({
         allowNull: false,
         type: DataTypes.BOOLEAN,
     })
-    IsUrgentEmailSent: boolean;
+    isUrgentEmailSent: boolean;
 
     @Column({
         allowNull: true,
         type: DataTypes.DATE,
     })
-    LastWellnessDate?: Date;
+    lastWellnessDate?: Date;
 
     @Column({
         allowNull: true,
         type: DataTypes.BOOLEAN,
     })
-    IsMobile?: boolean;
+    callType?: boolean;
 
     @Column({
         allowNull: true,
         type: DataTypes.BOOLEAN,
     })
-    CallType?: boolean;
-
-    @Column({
-        allowNull: true,
-        type: DataTypes.BOOLEAN,
-    })
-    CompletedByPhysician?: boolean;
+    completedByPhysician?: boolean;
 
     @Column({
         allowNull: true,
         type: DataTypes.DATE,
     })
-    LastReservationDate?: Date;
+    lastReservationDate?: Date;
 
     @Column({
         allowNull: true,
         type: DataTypes.DATE,
     })
-    AcceptedDate?: Date;
+    acceptedDate?: Date;
 
     @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
-    RelationName?: string;
+    relationName?: string;
 
     @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
-    CaseNumber?: string;
+    caseNumber?: string;
 
     @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
-    CaseTag?: string;
+    caseTag?: string;
 
     @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
-    CaseTagPhysician?: string;
-
-    @Column({
-        allowNull: true,
-        type: DataTypes.STRING,
-    })
-    PatientAccountId?: string;
-
-    @Column({
-        allowNull: true,
-        type: DataTypes.INTEGER,
-    })
-    CreatedUserId?: number;
-
-    @Column({ type: DataTypes.DATE, allowNull: true })
-    deletedAt: Date;
-
-    @HasOne(() => RequestStatusLog)
-    requestStatusLog: RequestStatusLog;
+    caseTagPhysician?: string;
 }
 
 export default Request;

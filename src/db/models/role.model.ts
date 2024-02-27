@@ -1,7 +1,7 @@
-import { Table, Column, Model, HasMany } from "sequelize-typescript";
+import { Table, Column, Model, HasMany, HasOne } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
 import { RoleAttributes, RoleCreationAttributes } from "../../interfaces";
-import { Admin, Physician } from "./index";
+import { Admin } from './index'
 
 @Table({
     timestamps: true,
@@ -30,31 +30,13 @@ class Role extends Model<RoleAttributes, RoleCreationAttributes> {
     AccountType: string;
 
     @Column({
-        type: DataTypes.STRING,
-        allowNull: false,
-    })
-    CreatedBy: string;
-
-    @Column({
-        type: DataTypes.DATE,
-        allowNull: true,
-    })
-    UpdatedBy: string;
-
-    @Column({
         type: DataTypes.DATE,
         allowNull: false,
     })
     IsDeleted: boolean;
 
-    @Column({ type: DataTypes.DATE, allowNull: true })
-    deletedAt: Date;
-
-    @HasMany(() => Admin)
-    admins: Admin[];
-
-    @HasMany(() => Physician)
-    physicians: Physician[];
+    @HasOne(() => Admin, { foreignKey: "roleId", sourceKey: "id"})
+    admin: Admin;
 }
 
 export default Role;

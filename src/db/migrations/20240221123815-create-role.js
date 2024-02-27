@@ -17,14 +17,6 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            CreatedBy: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
-            UpdatedBy: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
             IsDeleted: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,
@@ -34,7 +26,7 @@ module.exports = {
                 type: Sequelize.DATE,
             },
             updatedAt: {
-                allowNull: true,
+                allowNull: false,
                 type: Sequelize.DATE,
             },
             deletedAt: {

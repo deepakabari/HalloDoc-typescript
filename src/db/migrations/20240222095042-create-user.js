@@ -9,49 +9,41 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
-            AccUserId: {
+            firstName: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            lastName: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            email: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            phoneNumber: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            street: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            city: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            state: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            regionId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
             },
-            FirstName: {
+            zipCode: {
                 type: Sequelize.STRING,
                 allowNull: false,
-            },
-            LastName: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            Email: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
-            Mobile: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            IsMobile: {
-                type: Sequelize.BOOLEAN,
-                allowNull: true,
-            },
-            Street: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            City: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            State: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            RegionId: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
-            },
-            ZipCode: {
-                type: Sequelize.STRING,
-                allowNull: true,
             },
             strMonth: {
                 type: Sequelize.STRING,
@@ -65,24 +57,16 @@ module.exports = {
                 type: Sequelize.INTEGER,
                 allowNull: true,
             },
-            Status: {
+            status: {
                 type: Sequelize.INTEGER,
                 allowNull: true,
             },
-            IsDeleted: {
+            isDeleted: {
                 type: Sequelize.BOOLEAN,
                 allowNull: true,
             },
-            IsRequestWithEmail: {
+            isRequestWithEmail: {
                 type: Sequelize.BOOLEAN,
-                allowNull: true,
-            },
-            CreatedBy: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
-            ModifiedBy: {
-                type: Sequelize.STRING,
                 allowNull: true,
             },
             createdAt: {
@@ -90,7 +74,7 @@ module.exports = {
                 type: Sequelize.DATE,
             },
             updatedAt: {
-                allowNull: true,
+                allowNull: false,
                 type: Sequelize.DATE,
             },
             deletedAt: {

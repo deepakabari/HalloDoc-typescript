@@ -7,7 +7,7 @@ import { Controller } from "../interfaces";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 import { Op } from "sequelize";
-import AccUser from "../db/models/account.model";
+import Account from "../db/models/account.model";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -23,8 +23,8 @@ export const login: Controller = async (req, res) => {
         const { email, password } = req.body;
 
         // Find user in database
-        const user = await AccUser.findOne({
-            where: { Email: email },
+        const user = await Account.findOne({
+            where: { email },
         });
 
         // if user not found then give an error
@@ -68,8 +68,8 @@ export const forgotPassword: Controller = async (req, res) => {
         const { email } = req.body;
 
         // Check if user exists in the database
-        const existingUser = await AccUser.findOne({
-            where: { Email: email },
+        const existingUser = await Account.findOne({
+            where: { email },
         });
 
         // if user not found then give an error
@@ -100,12 +100,12 @@ export const forgotPassword: Controller = async (req, res) => {
         expireToken.setMinutes(expireToken.getMinutes() + 15);
 
         // update the resetToken and expireToken to the Admin table
-        await AccUser.update(
+        await Account.update(
             {
                 resetToken: hashedToken,
                 expireToken,
             },
-            { where: { Email: email } }
+            { where: { email } }
         );
 
         const resetLink = `http://localhost:3000/admin/resetPassword/${hashedToken}`;
@@ -141,7 +141,7 @@ export const resetPassword: Controller = async (req, res) => {
         const { hash } = req.params;
 
         // Find user in database with matching email and reset token
-        const user = await AccUser.findOne({
+        const user = await Account.findOne({
             where: {
                 resetToken: hash,
                 expireToken: { [Op.gt]: new Date() }, // Ensure that the reset token is not expired
@@ -171,9 +171,9 @@ export const resetPassword: Controller = async (req, res) => {
         );
 
         // Update user's password, resetToken, and expireToken
-        await AccUser.update(
+        await Account.update(
             {
-                Password: hashedPassword,
+                password: hashedPassword,
                 resetToken: null,
                 expireToken: null,
             },

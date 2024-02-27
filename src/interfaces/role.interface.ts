@@ -1,15 +1,13 @@
-import { Optional } from 'sequelize';
+import { Optional } from "sequelize";
 
 interface RoleAttributes {
     id: number;
-    Name: string;
-    AccountType: string;
-    CreatedBy: string
-    createdAt: string;
-    UpdatedBy?: string
-    updatedAt?: string
-    IsDeleted: boolean
-    deletedAt?: Date | null
+    name: string;
+    accountType: string;
+    createdAt: Date;
+    updatedAt: Date;
+    isDeleted: boolean;
+    deletedAt?: Date;
 }
 
 type RoleCreationAttributes = Optional<RoleAttributes, "id">;

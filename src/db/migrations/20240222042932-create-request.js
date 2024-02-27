@@ -9,100 +9,88 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
-            RequestTypeId: {
+            requestTypeId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
             },
-            UserId: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
-            },
-            FirstName: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            LastName: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            PhoneNumber: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            Email: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            Status: {
+            userId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
             },
-            PhysicianId: {
+            firstName: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            lastName: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            phoneNumber: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            email: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            status: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+            },
+            physicianId: {
                 type: Sequelize.INTEGER,
                 allowNull: true,
             },
-            ConfirmationNumber: {
+            confirmationNumber: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
-            IsDeleted: {
+            isDeleted: {
                 type: Sequelize.BOOLEAN,
                 allowNull: true,
             },
-            DeclinedBy: {
-                type: Sequelize.STRING,
+            declinedBy: {
+                type: Sequelize.INTEGER,
                 allowNull: true,
             },
-            IsUrgentEmailSent: {
+            isUrgentEmailSent: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,
             },
-            LastWellnessDate: {
+            lastWellnessDate: {
                 type: Sequelize.DATE,
                 allowNull: true,
             },
-            IsMobile: {
-                type: Sequelize.BOOLEAN,
-                allowNull: true,
-            },
-            CallType: {
+            callType: {
                 type: Sequelize.INTEGER,
                 allowNull: true,
             },
-            CompletedByPhysician: {
+            completedByPhysician: {
                 type: Sequelize.BOOLEAN,
                 allowNull: true,
             },
-            LastReservationDate: {
+            lastReservationDate: {
                 type: Sequelize.DATE,
                 allowNull: true,
             },
-            AcceptedDate: {
+            acceptedDate: {
                 type: Sequelize.DATE,
                 allowNull: true,
             },
-            RelationName: {
+            relationName: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
-            CaseNumber: {
+            caseNumber: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
-            CaseTag: {
+            caseTag: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
-            CaseTagPhysician: {
+            caseTagPhysician: {
                 type: Sequelize.STRING,
-                allowNull: true,
-            },
-            PatientAccountId: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            CreatedUserId: {
-                type: Sequelize.INTEGER,
                 allowNull: true,
             },
             createdAt: {
@@ -110,7 +98,7 @@ module.exports = {
                 type: Sequelize.DATE,
             },
             updatedAt: {
-                allowNull: true,
+                allowNull: false,
                 type: Sequelize.DATE,
             },
             deletedAt: {

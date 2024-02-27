@@ -3,14 +3,14 @@ import { serve, setup } from "swagger-ui-express";
 
 const options = {
     definition: {
-        openapi: "3.0.0",
+        openapi: "3.0.3",
         info: {
             title: "HalloDoc API",
             description: "API endpoints for a HalloDoc application",
             contact: {
                 name: "Deep Akabari",
                 email: "arcadecohort2.1@gmail.com",
-                url: "https://github.com/deepakabari/HalloDoc",
+                url: "https://github.com/deepakabari/HalloDoc-typescript",
             },
             version: "1.0.0",
         },
@@ -21,7 +21,7 @@ const options = {
             },
         ],
     },
-    apis: ["./src/routes/*.js"],
+    apis: ["./src/routes/*.routes.ts"],
 };
 const swaggerSpec = swaggerJsdoc(options);
 function swaggerDocs(app: any) {

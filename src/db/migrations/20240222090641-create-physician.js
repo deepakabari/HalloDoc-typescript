@@ -9,127 +9,115 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
-            AccUserId: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
-            },
-            FirstName: {
+            firstName: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            LastName: {
+            lastName: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
-            Email: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
-            Mobile: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            MedicalLicense: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            Photo: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            AdminNotes: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            IsAgreementDoc: {
-                type: Sequelize.BOOLEAN,
-                allowNull: true,
-            },
-            IsBackgroundDoc: {
-                type: Sequelize.BOOLEAN,
-                allowNull: true,
-            },
-            IsTrainingDoc: {
-                type: Sequelize.BOOLEAN,
-                allowNull: true,
-            },
-            IsNonDisclosureDoc: {
-                type: Sequelize.BOOLEAN,
-                allowNull: true,
-            },
-            Address1: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            Address2: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            City: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            RegionId: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
-            },
-            Zip: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            AltPhone: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            Status: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
-            },
-            BusinessName: {
+            email: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            BusinessWebsite: {
+            phoneNumber: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            IsDeleted: {
+            medicalLicense: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            photo: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            adminNotes: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            isAgreementDoc: {
                 type: Sequelize.BOOLEAN,
                 allowNull: true,
             },
-            RoleId: {
+            isBackgroundDoc: {
+                type: Sequelize.BOOLEAN,
+                allowNull: true,
+            },
+            isTrainingDoc: {
+                type: Sequelize.BOOLEAN,
+                allowNull: true,
+            },
+            isNonDisclosureDoc: {
+                type: Sequelize.BOOLEAN,
+                allowNull: true,
+            },
+            address1: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            address2: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            city: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            regionId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+            },
+            zipCode: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            altPhone: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            status: {
                 type: Sequelize.INTEGER,
                 allowNull: true,
+            },
+            businessName: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            businessWebsite: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            isDeleted: {
+                type: Sequelize.BOOLEAN,
+                allowNull: true,
+            },
+            roleId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
             },
             NPINumber: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
-            IsLicenseDoc: {
+            isLicenseDoc: {
                 type: Sequelize.BOOLEAN,
                 allowNull: true,
             },
-            Signature: {
+            signature: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
-            IsCredentialDoc: {
+            isCredentialDoc: {
                 type: Sequelize.BOOLEAN,
                 allowNull: true,
             },
-            IsTokenGenerate: {
+            isTokenGenerate: {
                 type: Sequelize.BOOLEAN,
                 allowNull: true,
             },
-            SyncEmailAddress: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            CreatedBy: {
-                type: Sequelize.STRING,
-                allowNull: false,
-            },
-            ModifiedBy: {
+            syncEmailAddress: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },

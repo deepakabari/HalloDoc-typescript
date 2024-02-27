@@ -9,76 +9,64 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
-            AccUserId: {
+            email: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            firstName: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            lastName: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            phoneNumber: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            address1: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            address2: {
+                type: Sequelize.STRING,
+                allowNull: true,
+            },
+            city: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            regionId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
             },
-            FirstName: {
+            zipCode: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            LastName: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            Email: {
+            altPhone: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            Mobile: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            Address1: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            Address2: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            City: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            RegionId: {
+            status: {
                 type: Sequelize.INTEGER,
-                allowNull: true,
-            },
-            Zip: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            AltPhone: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            CreatedBy: {
-                type: Sequelize.STRING,
                 allowNull: false,
             },
-            ModifiedBy: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            Status: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
-            },
-            IsDeleted: {
+            isDeleted: {
                 type: Sequelize.BOOLEAN,
-                allowNull: true,
+                allowNull: false,
             },
-            RoleId: {
+            roleId: {
                 type: Sequelize.INTEGER,
-                allowNull: true,
+                allowNull: false,
             },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
             },
             updatedAt: {
-                allowNull: true,
+                allowNull: false,
                 type: Sequelize.DATE,
             },
             deletedAt: {

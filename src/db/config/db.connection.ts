@@ -1,18 +1,15 @@
 import { Sequelize } from "sequelize-typescript";
-import path from "path";
 import {
-    Account,
-    AccountRole,
-    AccountUserRole,
     Admin,
     Region,
-    AdminRegion,
     Physician,
     Role,
     Request,
-    RequestStatusLog,
     User,
+    RequestType,
+    Account,
 } from "../models/index";
+
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -28,17 +25,14 @@ export const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
         freezeTableName: true,
     },
     models: [
-        Account,
-        AccountRole,
-        AccountUserRole,
+        Role,
         Admin,
         Region,
-        AdminRegion,
         Physician,
-        Role,
         Request,
-        RequestStatusLog,
         User,
+        RequestType,
+        Account,
     ],
 });
 

@@ -4,58 +4,55 @@ import {
     Model,
     ForeignKey,
     BelongsTo,
+    HasOne,
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
-import {Account, Region } from "./index";
+import { UserAttributes, UserCreationAttributes } from "../../interfaces";
+import { Account } from "./index";
 
 @Table({
     timestamps: true,
     paranoid: true,
     tableName: "User",
 })
-class User extends Model {
+class User extends Model<UserAttributes, UserCreationAttributes> {
     @Column({
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
     })
-    UserId: number;
+    id: number;
 
-    @ForeignKey(() => Account)
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    AccountUserId: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: false })
-    FirstName: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    LastName: string;
+    @Column({ type: DataTypes.INTEGER, allowNull: false })
+    AccountId: number
 
     @Column({ type: DataTypes.STRING, allowNull: false })
-    Email: string;
+    firstName: string;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
-    Mobile: string;
+    lastName: string;
 
-    @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsMobile: boolean;
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    email: string;
 
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    Street: string;
-
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    City: string;
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    phoneNumber: string;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
-    State: string;
-
-    @ForeignKey(() => Region)
-    @Column({ type: DataTypes.INTEGER, allowNull: true })
-    RegionId: number;
+    street: string;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
-    ZipCode: string;
+    city: string;
+
+    @Column({ type: DataTypes.STRING, allowNull: true })
+    state: string;
+
+    @Column({ type: DataTypes.INTEGER, allowNull: false })
+    regionId: number;
+
+    @Column({ type: DataTypes.STRING, allowNull: false })
+    zipCode: string;
 
     @Column({ type: DataTypes.STRING, allowNull: true })
     strMonth: string;
@@ -67,30 +64,16 @@ class User extends Model {
     intDate: number;
 
     @Column({ type: DataTypes.INTEGER, allowNull: true })
-    Status: number;
+    status: number;
 
     @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsDeleted: boolean;
+    isDeleted: boolean;
 
     @Column({ type: DataTypes.BOOLEAN, allowNull: true })
-    IsRequestWithEmail: boolean;
+    isRequestWithEmail: boolean;
 
-    @ForeignKey(() => Account)
-    @Column({ type: DataTypes.STRING, allowNull: false })
-    CreatedBy: string;
-
-    @ForeignKey(() => Account)
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    ModifiedBy: string;
-
-    @Column({ type: DataTypes.DATE, allowNull: true })
-    deletedAt: Date;
-
-    @BelongsTo(() => Account)
-    accountUser: Account;
-
-    @BelongsTo(() => Region)
-    region: Region;
+    @HasOne(() => Account, { foreignKey: "id", sourceKey: "AccountId"})
+    account: Account;
 }
 
 export default User;
