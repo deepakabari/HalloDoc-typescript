@@ -7,8 +7,14 @@ interface RequestAttributes {
     firstName: string;
     lastName: string;
     phoneNumber: string;
+    dob: Date
     email: string;
     status: string;
+    street: string
+    city: string
+    state: string
+    zipCode: string
+    patientNote?: string
     physicianId?: number;
     confirmationNumber?: string;
     isDeleted?: boolean;

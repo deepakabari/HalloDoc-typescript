@@ -11,7 +11,7 @@ interface Request extends ExpressRequest {
     userId: string;
 }
 
-export default (req: Request, res: Response, next: NextFunction): void => {
+export const isAuth = (req: Request, res: Response, next: NextFunction): void => {
     const authHeader: string | undefined = req.get("Authorization");
 
     if (!authHeader) {

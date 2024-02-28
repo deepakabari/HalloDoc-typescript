@@ -9,6 +9,10 @@ module.exports = {
                 primaryKey: true,
                 type: Sequelize.INTEGER,
             },
+            accountId: {
+                type: Sequelize.STRING,
+                allowNull: false
+            },
             firstName: {
                 type: Sequelize.STRING,
                 allowNull: false,
@@ -45,17 +49,9 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            strMonth: {
-                type: Sequelize.STRING,
-                allowNull: true,
-            },
-            intYear: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
-            },
-            intDate: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
+            dob: {
+                type: Sequelize.DATEONLY,
+                allowNull: false
             },
             status: {
                 type: Sequelize.INTEGER,

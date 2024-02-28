@@ -13,11 +13,11 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            AccountType: {
+            accountType: {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
-            IsDeleted: {
+            isDeleted: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,
             },

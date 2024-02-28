@@ -2,8 +2,6 @@ import {
     Table,
     Column,
     Model,
-    ForeignKey,
-    BelongsTo,
     HasOne,
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
@@ -13,7 +11,6 @@ import { Account, Region } from "./index";
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "User",
 })
 class User extends Model<UserAttributes, UserCreationAttributes> {
     @Column({
@@ -25,7 +22,7 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
     id: number;
 
     @Column({ type: DataTypes.INTEGER, allowNull: false })
-    AccountId: number
+    accountId: number
 
     @Column({ type: DataTypes.STRING, allowNull: false })
     firstName: string;
@@ -54,14 +51,8 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
     @Column({ type: DataTypes.STRING, allowNull: false })
     zipCode: string;
 
-    @Column({ type: DataTypes.STRING, allowNull: true })
-    strMonth: string;
-
-    @Column({ type: DataTypes.INTEGER, allowNull: true })
-    intYear: number;
-
-    @Column({ type: DataTypes.INTEGER, allowNull: true })
-    intDate: number;
+    @Column({ type: DataTypes.DATEONLY, allowNull: false })
+    dob: Date;
 
     @Column({ type: DataTypes.INTEGER, allowNull: true })
     status: number;
@@ -72,7 +63,7 @@ class User extends Model<UserAttributes, UserCreationAttributes> {
     @Column({ type: DataTypes.BOOLEAN, allowNull: true })
     isRequestWithEmail: boolean;
 
-    @HasOne(() => Account, { foreignKey: "id", sourceKey: "AccountId"})
+    @HasOne(() => Account, { foreignKey: "id", sourceKey: "accountId"})
     account: Account;
 
     @HasOne(() => Region, { foreignKey: "id", sourceKey:"regionId"})

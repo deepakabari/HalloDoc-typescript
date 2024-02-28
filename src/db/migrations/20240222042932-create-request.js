@@ -29,6 +29,10 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false,
             },
+            dob: {
+                type: Sequelize.DATEONLY,
+                allowNull: false,
+            },
             email: {
                 type: Sequelize.STRING,
                 allowNull: false,
@@ -36,6 +40,26 @@ module.exports = {
             status: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
+            },
+            street: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            city: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            state: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            zipCode: {
+                type: Sequelize.STRING,
+                allowNull: false,
+            },
+            patientNote: {
+                type: Sequelize.STRING,
+                allowNull: true,
             },
             physicianId: {
                 type: Sequelize.INTEGER,

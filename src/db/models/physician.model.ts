@@ -2,13 +2,11 @@ import {
     Table,
     Column,
     Model,
-    ForeignKey,
-    BelongsTo,
     HasOne,
     HasMany,
 } from "sequelize-typescript";
 import { DataTypes } from "sequelize";
-import { Account, Region, Role } from "./index";
+import { Account, Region, Role, Request } from "./index";
 import {
     PhysicianAttributes,
     PhysicianCreationAttributes,
@@ -17,7 +15,6 @@ import {
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "Physician",
 })
 class Physician extends Model<
     PhysicianAttributes,
@@ -126,9 +123,6 @@ class Physician extends Model<
 
     @HasOne(() => Role, { foreignKey: "id", sourceKey: "roleId"})
     role: Role;
-
-    // @BelongsTo(() => Request, { foreignKey: "physicianId", targetKey: "id"})
-    // request: Request;
 
     @HasMany(() => Request, { foreignKey: "physicianId", sourceKey: "id"})
     requests: Request[]

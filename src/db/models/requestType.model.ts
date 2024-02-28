@@ -9,7 +9,6 @@ import { Request } from '../models/index'
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "RequestType",
 })
 class RequestType extends Model<
     RequestTypeAttributes,
@@ -29,7 +28,7 @@ class RequestType extends Model<
     })
     name: string;
 
-    @BelongsTo(() => Request, { foreignKey: "requestTypeId", targetKey: "id"})
+    @BelongsTo(() => Request, { foreignKey: "id", targetKey: "requestTypeId"})
     request: Request
 }
 

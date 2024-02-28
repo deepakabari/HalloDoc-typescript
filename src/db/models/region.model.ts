@@ -14,7 +14,6 @@ import { Admin, Physician, User } from "./index";
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "Region",
 })
 class Region extends Model<RegionAttributes, RegionCreationAttributes> {
     @Column({
@@ -37,16 +36,13 @@ class Region extends Model<RegionAttributes, RegionCreationAttributes> {
     })
     Abbreviation?: string;
 
-    // @HasOne(() => Admin, { foreignKey: "regionId", sourceKey: "id" })
-    // admin: Admin;
-
-    @BelongsTo(() => Admin, { foreignKey: "regionId", targetKey: "id"})
+    @BelongsTo(() => Admin, { foreignKey: "id", targetKey: "regionId"})
     admin: Admin;
 
-    @BelongsTo(() => Physician, { foreignKey: "regionId", targetKey: "id"})
+    @BelongsTo(() => Physician, { foreignKey: "id", targetKey: "regionId"})
     physician: Physician
 
-    @BelongsTo(() => User, { foreignKey: "regionId", targetKey: "id"})
+    @BelongsTo(() => User, { foreignKey: "id", targetKey: "regionId"})
     user: User
 }
 export default Region;

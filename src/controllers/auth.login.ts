@@ -7,7 +7,7 @@ import { Controller } from "../interfaces";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 import { Op } from "sequelize";
-import Account from "../db/models/account.model";
+import {Account} from "../db/models/index";
 import dotenv from "dotenv";
 dotenv.config();
 

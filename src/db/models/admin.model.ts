@@ -13,7 +13,6 @@ import { Account, Region, Role } from "./index";
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "Admin",
 })
 class Admin extends Model<AdminAttributes, AdminCreationAttributes> {
     @Column({
@@ -66,11 +65,8 @@ class Admin extends Model<AdminAttributes, AdminCreationAttributes> {
     @Column({ type: DataTypes.INTEGER, allowNull: false })
     roleId: number;
 
-    @HasOne(() => Account, { foreignKey: "AccountId", sourceKey: "id" })
+    @HasOne(() => Account, { foreignKey: "id", sourceKey: "accountId" })
     account: Account;
-
-    // @BelongsTo(() => Region, { foreignKey: "regionId", targetKey: "id" })
-    // region: Region;
     
     @HasOne(() => Region, { foreignKey: "id", sourceKey: "regionId"})
     region: Region;

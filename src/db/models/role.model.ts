@@ -6,7 +6,6 @@ import { Admin, Physician } from './index'
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "Role",
 })
 class Role extends Model<RoleAttributes, RoleCreationAttributes> {
     @Column({
@@ -21,19 +20,19 @@ class Role extends Model<RoleAttributes, RoleCreationAttributes> {
         type: DataTypes.STRING,
         allowNull: false,
     })
-    Name: string;
+    name: string;
 
     @Column({
         type: DataTypes.STRING,
         allowNull: false,
     })
-    AccountType: string;
+    accountType: string;
 
     @Column({
         type: DataTypes.DATE,
         allowNull: false,
     })
-    IsDeleted: boolean;
+    isDeleted: boolean;
 
     @HasOne(() => Admin, { foreignKey: "roleId", sourceKey: "id"})
     admin: Admin;

@@ -11,12 +11,11 @@ import {
     RequestAttributes,
     RequestCreationAttributes,
 } from "../../interfaces/";
-import {Physician, RequestType} from "./index";
+import { Physician, RequestType } from "./index";
 
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "Request",
 })
 class Request extends Model<RequestAttributes, RequestCreationAttributes> {
     @Column({
@@ -58,6 +57,12 @@ class Request extends Model<RequestAttributes, RequestCreationAttributes> {
     phoneNumber: string;
 
     @Column({
+        allowNull: false,
+        type: DataTypes.DATEONLY,
+    })
+    dob: Date;
+
+    @Column({
         allowNull: true,
         type: DataTypes.STRING,
     })
@@ -68,6 +73,36 @@ class Request extends Model<RequestAttributes, RequestCreationAttributes> {
         type: DataTypes.INTEGER,
     })
     status: number;
+
+    @Column({
+        allowNull: false,
+        type: DataTypes.STRING,
+    })
+    street: string;
+
+    @Column({
+        allowNull: false,
+        type: DataTypes.STRING,
+    })
+    city: string;
+
+    @Column({
+        allowNull: false,
+        type: DataTypes.STRING,
+    })
+    state: string;
+
+    @Column({
+        allowNull: false,
+        type: DataTypes.STRING,
+    })
+    zipCode: string;
+
+    @Column({
+        allowNull: false,
+        type: DataTypes.INTEGER,
+    })
+    patientNote: number;
 
     @Column({
         allowNull: true,
@@ -153,14 +188,11 @@ class Request extends Model<RequestAttributes, RequestCreationAttributes> {
     })
     caseTagPhysician?: string;
 
-    @HasOne(() => RequestType, {foreignKey: "id", sourceKey: "requestTypeId"})
-    requestType: RequestType
+    @HasOne(() => RequestType, { foreignKey: "id", sourceKey: "requestTypeId" })
+    requestType: RequestType;
 
-    // @HasOne(() => Physician, { foreignKey: "id", sourceKey: "physicianId"})
-    // physician: Physician
-
-    @BelongsTo(() => Physician, { foreignKey: "id", targetKey: "physicianId"})
-    physician: Physician
- }
+    @BelongsTo(() => Physician, { foreignKey: "physicianId", targetKey: "id" })
+    physician: Physician;
+}
 
 export default Request;

@@ -8,11 +8,11 @@ import {
 } from "sequelize-typescript";
 import { AccountAttributes, AccountCreationAttributes } from "../../interfaces";
 import { DataTypes } from "sequelize";
+import { Admin, Physician, User } from './index'
 
 @Table({
     timestamps: true,
     paranoid: true,
-    tableName: "Admin",
 })
 class Account extends Model<AccountAttributes, AccountCreationAttributes> {
     @Column({
@@ -37,6 +37,15 @@ class Account extends Model<AccountAttributes, AccountCreationAttributes> {
 
     @Column({ type: DataTypes.DATE, allowNull: true })
     expireToken: Date;
+
+    @BelongsTo(() => User, { foreignKey: "id", targetKey: 'accountId'})
+    user: User;
+
+    @BelongsTo(() => Admin, { foreignKey: "id", targetKey: "accountId"})
+    admin: Admin
+
+    @BelongsTo(() => Physician, { foreignKey: "id", targetKey: "accountId"})
+    physician: Physician;
 }
 
 export default Account;

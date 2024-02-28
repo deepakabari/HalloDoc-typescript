@@ -2,6 +2,7 @@ import { Optional } from 'sequelize';
 
 interface UserAttributes {
     id: number;
+    accountId: number
     firstName: string
     lastName?: string
     email: string
@@ -11,13 +12,11 @@ interface UserAttributes {
     state: string
     regionId: number
     zipCode: string
-    strMonth?: string
-    intYear?: number
-    intDate?: number
+    dob: Date
     status?: number
     isDeleted?: boolean
     isRequestWithEmail?: boolean
-    createdAt: Date
+    createdAt?: Date
     updatedAt: Date
     deletedAt?: Date | null
 }
