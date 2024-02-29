@@ -1,17 +1,23 @@
 import jwt from "jsonwebtoken";
 import httpCode from "../constants/http.constant";
 import messageConstant from "../constants/message.constant";
-import { Request as ExpressRequest, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import dotenv from 'dotenv'
 dotenv.config();
 
 const SECRET = process.env.SECRET as string;
 
-interface Request extends ExpressRequest {
-    userId: string;
+interface DecodedToken {
+    user: {
+        userId: string;
+    };
 }
 
-export const isAuth = (req: Request, res: Response, next: NextFunction): void => {
+interface AuthRequest extends Request {
+    userId?: string; // Add the userId property as optional
+}
+
+export const isAuth = (req: AuthRequest, res: Response, next: NextFunction): void => {
     const authHeader: string | undefined = req.get("Authorization");
 
     if (!authHeader) {
@@ -21,10 +27,10 @@ export const isAuth = (req: Request, res: Response, next: NextFunction): void =>
     }
 
     const token: string = authHeader.split(" ")[1];
-    let decodedToken: any;
+    let decodedToken: DecodedToken;
 
     try {
-        decodedToken = jwt.verify(token, SECRET);
+        decodedToken = jwt.verify(token, SECRET) as DecodedToken;
     } catch (error: any) {
         error.statusCode = httpCode.INTERNAL_SERVER_ERROR;
         throw error;
